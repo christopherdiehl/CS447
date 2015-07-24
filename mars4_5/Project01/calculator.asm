@@ -1,4 +1,4 @@
-#Christopher Diehl
+ #Christopher Diehl
 #CS 447
 #Project 1
 
@@ -26,8 +26,9 @@ Start:
 State1:
 # Determines if the user entered an operand
  beq $t9, $zero, State1
- lui $t6, 0x8000 
- xor $t9, $t6, $t9
+ sll $t9, $t9, 1
+ srl $t9, $t9, 1
+
  
  #if input was the equal button. Program displays operand one
  beq $t9, 14, Result1
@@ -86,8 +87,9 @@ State1:
  State2:
  # Determines if the user entered an operand
  beq $t9, $zero, State2
- lui $t6, 0x8000
- xor $t9, $t6, $t9
+
+ sll $t9, $t9, 1
+ srl $t9, $t9, 1
  
  #code for equal button
  beq $t9, 14, Result1
@@ -125,8 +127,8 @@ State1:
  State3:
   
  beq $t9, $zero, State3
- lui $t6, 0x8000
- xor $t9, $t6, $t9
+ sll $t9, $t9, 1
+ srl $t9, $t9, 1
  
   #code for equal button
  beq $t9, 14, Result #need to see if it works
@@ -183,7 +185,7 @@ State1:
   beq $t2, $t6, One2
   add $t6, $zero, $zero
  
- li $t6, 0x0001
+ addi $t6, $zero, 1
  and $s2, $t6, $t2
  add $s1, $zero, $zero
  add $s3, $t2, $zero
@@ -233,7 +235,7 @@ State1:
   
   add $s1, $zero, $zero
   add $t7, $zero, $zero
-  li $t6, 0x0001
+  addi $t6, $zero, 1
   and $s2, $t6, $t2
   add $s1, $zero, $zero
   
@@ -320,7 +322,7 @@ State1:
   beq $t2, $t6, One
   add $t6, $zero, $zero
  
- li $t6, 0x0001
+ addi $t6, $zero, 1
  and $s2, $t6, $t2
  add $s1, $zero, $zero
  add $s3, $t2, $zero
@@ -333,8 +335,8 @@ State1:
 
   
  MLoop:
- 
- addi $t7, $t7,2
+ addi $s5, $zero, 2
+ add $t7, $t7, $s5
  sll $s4, $t1,  1
  add $s1, $s4, $s1
  bne $s3, $t7, MLoop
@@ -367,7 +369,7 @@ State1:
   
   add $s1, $zero, $zero
   add $t7, $zero, $zero
-  li $t6, 0x0001
+  addi $t6, $zero, 1
   and $s2, $t6, $t2
   add $s1, $zero, $zero
   
@@ -377,8 +379,8 @@ State1:
  sub $s1, $t1, $zero
  
  DLoop:
- 
- addi $t7, $t7,1
+ addi $s5, $zero, 1
+ add $t7, $t7, $s5
  sub $t1, $t1, $t2
  slt $s3, $t1, $t2
  beq $s3, $zero, DLoop
@@ -418,9 +420,9 @@ State1:
  
  State4:
  beq $t9, $zero, State4
- lui $t6, 0x8000
- xor $t9, $t6, $t9
- 
+
+ sll $t9, $t9, 1
+ srl $t9, $t9, 1
  beq $t9, 15, Start
  
  beq $t9, 14, Result4
